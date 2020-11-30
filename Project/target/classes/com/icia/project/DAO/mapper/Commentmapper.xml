@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="Comment"> 
+	<insert id="commentinsert" parameterType="comment">
+		INSERT INTO BOARDCOMMENT(CNUMBER, BNUMBER, CWRITER, CCONTENTS, CDATE) 
+			VALUES(COMMENT_SEQ.NEXTVAL, #{bnumber}, #{cwriter}, #{ccontents}, SYSDATE)
+	</insert>
+	
+	<select id="commentlist" parameterType="int" resultType="comment">
+		SELECT * FROM BOARDCOMMENT WHERE BNUMBER=#{bnumber}
+	</select>
+	
+	<delete id="commentdelete" parameterType="int">
+		DELETE FROM BOARDCOMMENT WHERE CNUMBER=#{cnumber}
+	</delete>
+	
+ </mapper>
